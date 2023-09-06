@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import seal from "./assets/images/dolphin-pic.jpg";
 
 function App(): JSX.Element {
     return (
@@ -10,7 +11,7 @@ function App(): JSX.Element {
                 World
             </header>
             <h1> This is another header</h1>
-            <img src="..src\assets\images\dolphin-pic.jpg" alt="Pic of seal" />
+            <img src={seal} alt="Pic of seal" width="100" height="100" />
             <ul>
                 <li>I love seals 1</li>
                 <li>I love seals 2</li>
