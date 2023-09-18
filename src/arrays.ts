@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /**
  * Consume an array of numbers, and return a new array containing
  * JUST the first and last number. If there are no elements, return
@@ -28,8 +29,11 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    const integers = numbers.map((strs: string): number => parseInt(strs));
-    return integers;
+    const integers = numbers.map((strs: string): number => parseInt(strs, 10));
+    const nums = integers.map((ints: number): number =>
+        Number.isNaN(ints) ? 0 : ints
+    );
+    return nums;
 }
 
 /**
@@ -40,7 +44,13 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    //convert the array to only numbers
+    const noSign = amounts.map((amount: string): number => {
+        const replaced = amount.replace(/^\$/, "");
+        const parsedNum = parseInt(replaced, 10);
+        return !isNaN(parsedNum) ? parsedNum : 0;
+    });
+    return noSign;
 };
 
 /**
@@ -91,7 +101,10 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    const adding = addends.join(" + ");
+    if (addends.length === 0) {
+        return "0=0";
+    }
+    const adding = addends.join("+");
     const sum = addends.reduce(
         (currentTotal: number, num: number) => currentTotal + num,
         0
@@ -110,5 +123,24 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const findInd = values.findIndex((val: number): boolean => val < 0); //finds the indices of all numbers <0
+    let newArr: number[];
+    if (findInd !== -1) {
+        const sum = values
+            .slice(0, findInd)
+            .reduce(
+                (currentTotal: number, num: number) => currentTotal + num,
+                0
+            );
+        newArr = [...values];
+        newArr.splice(findInd + 1, 0, sum);
+    } else {
+        const sum = values.reduce(
+            (currentTotal: number, num: number) => currentTotal + num,
+            0
+        );
+        newArr = [...values, sum];
+    }
+
+    return newArr;
 }
