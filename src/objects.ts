@@ -1,3 +1,5 @@
+/* eslint-disable brace-style */
+/* eslint-disable prettier/prettier */
 import { Question, QuestionType } from "./interfaces/question";
 
 /**
@@ -10,7 +12,8 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
-    return {};
+    // eslint-disable-next-line prettier/prettier
+    return {id: id, name: name, body: "", type: type, options: [], expected: "", points: 1, published: false};
 }
 
 /**
@@ -21,6 +24,11 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
+    const trimmed = answer.trim();
+    const lower = trimmed.toLowerCase();
+    if (lower === question.expected){
+        return true;
+    }
     return false;
 }
 
@@ -31,6 +39,12 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
+    if (question.type === "short_answer_question"){
+        return true;
+    }
+    else if (question.type === "multiple_choice_question"){
+        return question.options.includes(answer);
+    }
     return false;
 }
 
