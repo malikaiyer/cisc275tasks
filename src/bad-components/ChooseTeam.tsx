@@ -1,3 +1,5 @@
+/* eslint-disable brace-style */
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 
@@ -14,18 +16,16 @@ export function ChooseTeam(): JSX.Element {
     const [allOptions, setAllOptions] = useState<string[]>(PEOPLE);
     const [team, setTeam] = useState<string[]>([]);
 
-    function chooseMember() {
-        /*
+    function chooseMember(newMember: string) {
         if (!team.includes(newMember)) {
-            team.push(newMember);
+            const newTeam = [...team, newMember];
+            setTeam(newTeam);
         }
-        */
     }
 
     function clearTeam() {
-        /*
-        team = [];
-        */
+        const newTeam: string[] = [];
+        setTeam(newTeam);
     }
 
     return (
@@ -36,7 +36,7 @@ export function ChooseTeam(): JSX.Element {
                     {allOptions.map((option: string) => (
                         <div key={option} style={{ marginBottom: "4px" }}>
                             Add{" "}
-                            <Button onClick={chooseMember} size="sm">
+                            <Button onClick= {() => {chooseMember(option);}} size="sm">
                                 {option}
                             </Button>
                         </div>

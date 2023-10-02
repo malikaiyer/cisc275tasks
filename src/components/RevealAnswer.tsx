@@ -19,6 +19,7 @@ export function RevealAnswer(): JSX.Element {
     // Only includes <div>42</div> if `visible` is true
     return (
         <div>
+            <h3>Reveal Answer</h3>
             <Button onClick={flipVisibility}>Reveal Answer</Button>
             {visible && <div>42</div>} 
         </div>

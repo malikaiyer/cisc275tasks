@@ -38,7 +38,7 @@ export function TwoDice(): JSX.Element {
 
     return (
         <div>
-            <p>Two Dice</p>
+            <h3>Two Dice</h3>
             <span data-testid="left-die">{dieOne}</span>
             <Button onClick={rollDieOne}>Roll Left</Button>
 

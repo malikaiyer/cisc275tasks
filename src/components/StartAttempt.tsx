@@ -36,6 +36,7 @@ export function StartAttempt(): JSX.Element {
 
     return (
         <div>
+            <h3>Start Attempt</h3>
             <Button
                 onClick={startQuiz}
                 disabled={inProgress || numAttempts === 0}
