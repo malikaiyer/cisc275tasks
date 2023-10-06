@@ -22,12 +22,12 @@ export function CheckAnswer({
     }
     return (
         <div>
+            <h3>Check Answer</h3>
             <Form.Group controlId="answer">
                 <Form.Label>Answer:</Form.Label>
                 <Form.Control value={ans} onChange={updateAns} />
             </Form.Group>
             <div>The answer is: {displayText}</div>
-            <h3>Check Answer</h3>
         </div>
     );
 }
