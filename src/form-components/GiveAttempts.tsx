@@ -1,23 +1,22 @@
 /* eslint-disable brace-style */
 /* eslint-disable prettier/prettier */
-import React, { ReactHTML, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
 export function GiveAttempts(): JSX.Element {
     const [left, setLeft] = useState<number>(3);
     const [req, setReq] = useState<number>(0);
 
-    function increaseAttempt(): void{
-        if (isNaN(req)){
-            setLeft(left+0);
-        }
-        else{
-            setLeft(left+req);
+    function increaseAttempt(): void {
+        if (isNaN(req)) {
+            setLeft(left + 0);
+        } else {
+            setLeft(left + req);
         }
     }
 
-    function decreaseAttempt(): void{
-        if (left>0){
+    function decreaseAttempt(): void {
+        if (left > 0) {
             setLeft(left - 1);
         }
     }
@@ -35,11 +34,11 @@ export function GiveAttempts(): JSX.Element {
                     }
                 />
             </Form.Group>
-            <button
-                onClick={decreaseAttempt}
-                disabled={left===0}> use </button>
-            <button
-                onClick={increaseAttempt}> gain </button>
+            <button onClick={decreaseAttempt} disabled={left === 0}>
+                {" "}
+                use{" "}
+            </button>
+            <button onClick={increaseAttempt}> gain </button>
         </div>
     );
 }
